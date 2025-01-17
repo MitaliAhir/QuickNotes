@@ -8,8 +8,13 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.quicknotes.navigation.AppNavHost
+import com.example.quicknotes.screens.HomeScreen
 import com.example.quicknotes.ui.theme.QuickNotesTheme
 
 class MainActivity : ComponentActivity() {
@@ -18,9 +23,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             QuickNotesTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    QuickNote(Modifier.padding(innerPadding))
-                }
+              QuickNoteApp()
             }
         }
     }
@@ -28,15 +31,18 @@ class MainActivity : ComponentActivity() {
 
 }
 @Composable
-fun QuickNote(modifier: Modifier){
+fun QuickNoteApp(){
+    val notes = remember { mutableStateListOf<Note>() }
+    var noteIdCounter = remember { mutableIntStateOf(notes.size) }
 
+    AppNavHost(notes, noteIdCounter)
 }
 
 
 @Preview(showBackground = true)
 @Composable
-fun GreetingPreview() {
+fun QuickNotesPreview() {
     QuickNotesTheme {
-
+        QuickNoteApp()
     }
 }
