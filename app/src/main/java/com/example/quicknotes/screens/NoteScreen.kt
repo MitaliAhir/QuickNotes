@@ -36,27 +36,27 @@ fun NoteScreen(note: Note?, save: (Note) -> Unit, cancel: () -> Unit) {
         Column(
             modifier = Modifier.padding(innerPadding).fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(1.dp)
+            verticalArrangement = Arrangement.spacedBy(16.dp)
         )
         {
             TextField(
                 value = title,
                 onValueChange = { title = it },
                 label = { Text("Title") },
-                modifier = Modifier.fillMaxWidth().padding(8.dp)
+                modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp)
             )
             TextField(
                 value = content,
                 onValueChange = { content = it },
                 label = { Text("Content") },
-                modifier = Modifier.fillMaxWidth().weight(1f).padding(8.dp)
+                modifier = Modifier.fillMaxWidth().weight(1f).padding(horizontal = 16.dp)
             )
 
             Row(modifier = Modifier.padding(bottom = 8.dp)) {
                 Button(
                     onClick = { cancel() },
                     modifier = Modifier
-                        .padding(8.dp)
+                        .padding(16.dp)
                         .weight(1f),
                     enabled = true,
                 ) {
@@ -65,7 +65,7 @@ fun NoteScreen(note: Note?, save: (Note) -> Unit, cancel: () -> Unit) {
                 Button(
                     onClick = { save(Note(note?.id ?: -1, title, content)) },
                     modifier = Modifier
-                        .padding(8.dp)
+                        .padding(16.dp)
                         .weight(1f),
                     enabled = content.isNotBlank(),
                 ) {
