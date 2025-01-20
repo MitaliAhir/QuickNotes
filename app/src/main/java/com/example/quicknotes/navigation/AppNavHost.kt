@@ -24,7 +24,7 @@ fun AppNavHost(notes: SnapshotStateList<Note>, noteIDCounter: MutableIntState) {
         composable("create_note") {
             NoteScreen(
                 save = { note ->
-                    notes.add(note.copy(noteIDCounter.intValue++))
+                    notes.add(note.copy(id = noteIDCounter.intValue++))
                     navController.popBackStack()
                 },
                 cancel = { navController.popBackStack() },

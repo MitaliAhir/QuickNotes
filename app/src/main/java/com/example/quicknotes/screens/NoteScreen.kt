@@ -12,6 +12,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -79,7 +80,7 @@ fun NoteScreen(note: Note?, save: (Note) -> Unit, cancel: () -> Unit) {
 @Composable
 private fun NoteScreenPreview() {
     val notes = remember { mutableStateListOf<Note>() }
-    var noteIdCounter by remember { mutableStateOf(0) }
+    var noteIdCounter by remember { mutableIntStateOf(0) }
 
     NoteScreen(
         save = { note -> notes.add(note.copy(id = noteIdCounter++)) },
